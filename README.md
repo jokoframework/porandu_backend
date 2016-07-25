@@ -24,7 +24,7 @@ Pero aún se utiliza en conjunción con JPA, solamente la inicialización se hac
 * IDE compatible con proyectos MAVEN
 * Java 8 (JDK8)
 * Base de datos H2 con el nombre db_porandu
-* Descargar el settings.xml del Artifactory http://10.111.111.215:10080/artifactory/ y llamarle porandu-settings.xml. En el Eclipse o IntelliJ puede elegir el directorio en que se encuentra el settings.xml, pero para el NetBeans, el settings.xml debe estar en el sitio default para settings de Maven, que es en el ***/home/suUsuario/.m2*** o su equivalente según el sistema operativo.
+* Si dispone de un Artifactory local, descargar el settings.xml del Artifactory http://gotten/artifactory/ y llamarle porandu-settings.xml. En el Eclipse o IntelliJ puede elegir el directorio en que se encuentra el settings.xml, pero para el NetBeans, el settings.xml debe estar en el sitio default para settings de Maven, que es en el ***/home/suUsuario/.m2*** o su equivalente según el sistema operativo.
 
 #Iniciar el proyecto
 
