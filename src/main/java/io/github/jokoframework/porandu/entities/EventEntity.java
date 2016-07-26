@@ -17,21 +17,26 @@ public class EventEntity extends BaseEntity {
     @Id
     @Basic
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "event_id_seq")
-    private Long id;
+    @Column(name = "event_id")
+    private Long eventId;
 
     @Basic
     private String code;
 
     @Basic
+    @Column(length = 4096)
     private String description;
 
-    @Override
-    public Long getId() {
-        return id;
+    @Basic
+    @Column(length = 2048)
+    private String imageUrl;
+
+    public Long getEventId() {
+        return eventId;
     }
 
-    public void setId(Long pId) {
-        id = pId;
+    public void setEventId(Long pId) {
+        eventId = pId;
     }
 
     public String getCode() {
@@ -50,6 +55,18 @@ public class EventEntity extends BaseEntity {
         description = pDescription;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String pImageUrl) {
+        imageUrl = pImageUrl;
+    }
+
+    @Override
+    public Long getId() {
+        return eventId;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -65,9 +82,10 @@ public class EventEntity extends BaseEntity {
         EventEntity rhs = (EventEntity) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(this.id, rhs.id)
+                .append(this.eventId, rhs.eventId)
                 .append(this.code, rhs.code)
                 .append(this.description, rhs.description)
+                .append(this.imageUrl, rhs.imageUrl)
                 .isEquals();
     }
 
@@ -75,9 +93,10 @@ public class EventEntity extends BaseEntity {
     public int hashCode() {
         return new HashCodeBuilder()
                 .appendSuper(super.hashCode())
-                .append(id)
+                .append(eventId)
                 .append(code)
                 .append(description)
+                .append(imageUrl)
                 .toHashCode();
     }
 
@@ -86,9 +105,10 @@ public class EventEntity extends BaseEntity {
     public String toString() {
         return new ToStringBuilder(this)
                 .appendSuper(super.toString())
-                .append("id", id)
+                .append("eventId", eventId)
                 .append("code", code)
                 .append("description", description)
+                .append("imageUrl", imageUrl)
                 .toString();
     }
 }

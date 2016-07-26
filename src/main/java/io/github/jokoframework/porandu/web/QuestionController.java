@@ -22,7 +22,7 @@ public class QuestionController extends BaseRestController {
 
     @ApiOperation(value = "Provee la lista preguntas para la charla seleccionada", position = 1)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Se provee la lista de preguntas para la charla recaudadora."),
+            @ApiResponse(code = 200, message = "Se provee la lista de preguntas para la charla."),
             @ApiResponse(code = 401, message = "El usuario introdujo alguna credencial inválida."),
             @ApiResponse(code = 409, message = "Se pasó algún parámetro incorrecto.")
     })

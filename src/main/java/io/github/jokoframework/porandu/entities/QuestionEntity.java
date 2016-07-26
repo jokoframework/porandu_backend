@@ -17,12 +17,14 @@ public class QuestionEntity extends BaseEntity {
     @Id
     @Basic
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "question_id_seq")
-    private Long id;
+    @Column(name = "question_id")
+    private Long questionId;
 
     @Basic
     private String title;
 
     @Basic
+    @Column(length = 4096)
     private String detail;
 
     @ManyToOne
@@ -33,13 +35,12 @@ public class QuestionEntity extends BaseEntity {
     @JoinColumn(name = "author_id")
     private PersonEntity author;
 
-    @Override
-    public Long getId() {
-        return id;
+    public Long getQuestionId() {
+        return questionId;
     }
 
-    public void setId(Long pId) {
-        id = pId;
+    public void setQuestionId(Long pId) {
+        questionId = pId;
     }
 
     public String getTitle() {
@@ -74,13 +75,16 @@ public class QuestionEntity extends BaseEntity {
         author = pAuthor;
     }
 
-
+    @Override
+    public Long getId() {
+        return questionId;
+    }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .appendSuper(super.toString())
-                .append("id", id)
+                .append("questionId", questionId)
                 .append("title", title)
                 .append("detail", detail)
                 .append("lecture", lecture)
@@ -102,7 +106,7 @@ public class QuestionEntity extends BaseEntity {
         QuestionEntity rhs = (QuestionEntity) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(this.id, rhs.id)
+                .append(this.questionId, rhs.questionId)
                 .append(this.title, rhs.title)
                 .append(this.detail, rhs.detail)
                 .append(this.lecture, rhs.lecture)
@@ -114,7 +118,7 @@ public class QuestionEntity extends BaseEntity {
     public int hashCode() {
         return new HashCodeBuilder()
                 .appendSuper(super.hashCode())
-                .append(id)
+                .append(questionId)
                 .append(title)
                 .append(detail)
                 .append(lecture)

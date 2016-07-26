@@ -17,7 +17,8 @@ public class PersonEntity extends BaseEntity {
     @Id
     @Basic
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "person_id_seq")
-    private Long id;
+    @Column(name = "person_id")
+    private Long personId;
 
     @Basic
     @Column(name = "full_name")
@@ -26,13 +27,12 @@ public class PersonEntity extends BaseEntity {
     @Basic
     private String email;
 
-    @Override
-    public Long getId() {
-        return id;
+    public Long getPersonId() {
+        return personId;
     }
 
-    public void setId(Long pId) {
-        id = pId;
+    public void setPersonId(Long pId) {
+        personId = pId;
     }
 
     public String getFullName() {
@@ -51,6 +51,10 @@ public class PersonEntity extends BaseEntity {
         email = pEmail;
     }
 
+    @Override
+    public Long getId() {
+        return personId;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -66,7 +70,7 @@ public class PersonEntity extends BaseEntity {
         PersonEntity rhs = (PersonEntity) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(this.id, rhs.id)
+                .append(this.personId, rhs.personId)
                 .append(this.fullName, rhs.fullName)
                 .append(this.email, rhs.email)
                 .isEquals();
@@ -76,7 +80,7 @@ public class PersonEntity extends BaseEntity {
     public int hashCode() {
         return new HashCodeBuilder()
                 .appendSuper(super.hashCode())
-                .append(id)
+                .append(personId)
                 .append(fullName)
                 .append(email)
                 .toHashCode();
@@ -87,7 +91,7 @@ public class PersonEntity extends BaseEntity {
     public String toString() {
         return new ToStringBuilder(this)
                 .appendSuper(super.toString())
-                .append("id", id)
+                .append("personId", personId)
                 .append("fullName", fullName)
                 .append("email", email)
                 .toString();

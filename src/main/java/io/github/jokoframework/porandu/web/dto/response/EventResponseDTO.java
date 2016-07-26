@@ -7,16 +7,16 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * Created by afeltes on 25/07/16.
  */
 public class EventResponseDTO extends BaseResponseDTO {
-    private Long id;
+    private Long eventId;
     private String code;
     private String description;
 
-    public Long getId() {
-        return id;
+    public Long getEventId() {
+        return eventId;
     }
 
-    public void setId(Long pId) {
-        id = pId;
+    public void setEventId(Long pEventId) {
+        eventId = pEventId;
     }
 
     public String getCode() {
@@ -39,7 +39,7 @@ public class EventResponseDTO extends BaseResponseDTO {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("id", id)
+                .append("eventId", eventId)
                 .append("code", code)
                 .append("description", description)
                 .toString();

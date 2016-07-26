@@ -17,13 +17,19 @@ public class LectureEntity extends BaseEntity {
     @Id
     @Basic
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "lecture_id_seq")
-    private Long id;
+    @Column(name = "lecture_id")
+    private Long lectureId;
 
     @Basic
     private String code;
 
     @Basic
+    @Column(length = 4096)
     private String description;
+
+    @Basic
+    @Column(length = 2048)
+    private String imageUrl;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
@@ -33,13 +39,12 @@ public class LectureEntity extends BaseEntity {
     @JoinColumn(name = "author_id")
     private PersonEntity author;
 
-    @Override
-    public Long getId() {
-        return id;
+    public Long getLectureId() {
+        return lectureId;
     }
 
-    public void setId(Long pId) {
-        id = pId;
+    public void setLectureId(Long pId) {
+        lectureId = pId;
     }
 
     public String getCode() {
@@ -66,6 +71,18 @@ public class LectureEntity extends BaseEntity {
         event = pEvent;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String pImageUrl) {
+        imageUrl = pImageUrl;
+    }
+
+    @Override
+    public Long getId() {
+        return lectureId;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -81,9 +98,10 @@ public class LectureEntity extends BaseEntity {
         LectureEntity rhs = (LectureEntity) obj;
         return new EqualsBuilder()
                 .appendSuper(super.equals(obj))
-                .append(this.id, rhs.id)
+                .append(this.lectureId, rhs.lectureId)
                 .append(this.code, rhs.code)
                 .append(this.description, rhs.description)
+                .append(this.imageUrl, rhs.imageUrl)
                 .append(this.event, rhs.event)
                 .append(this.author, rhs.author)
                 .isEquals();
@@ -93,9 +111,10 @@ public class LectureEntity extends BaseEntity {
     public int hashCode() {
         return new HashCodeBuilder()
                 .appendSuper(super.hashCode())
-                .append(id)
+                .append(lectureId)
                 .append(code)
                 .append(description)
+                .append(imageUrl)
                 .append(event)
                 .append(author)
                 .toHashCode();
@@ -106,9 +125,10 @@ public class LectureEntity extends BaseEntity {
     public String toString() {
         return new ToStringBuilder(this)
                 .appendSuper(super.toString())
-                .append("id", id)
+                .append("lectureId", lectureId)
                 .append("code", code)
                 .append("description", description)
+                .append("imageUrl", imageUrl)
                 .append("event", event)
                 .append("author", author)
                 .toString();

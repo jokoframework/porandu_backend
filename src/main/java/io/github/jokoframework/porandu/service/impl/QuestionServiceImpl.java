@@ -1,5 +1,6 @@
 package io.github.jokoframework.porandu.service.impl;
 
+import io.github.jokoframework.porandu.entities.LectureEntity;
 import io.github.jokoframework.porandu.entities.QuestionEntity;
 import io.github.jokoframework.porandu.repositories.QuestionsRepository;
 import io.github.jokoframework.porandu.service.QuestionService;
@@ -26,7 +27,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<QuestionResponseDTO> findByLecture(Long pLectureId) {
         List<QuestionResponseDTO> questions = new ArrayList<>();
-        List<QuestionEntity> questionEntities = questionsRepository.findByLectureId(pLectureId);
+        List<QuestionEntity> questionEntities = questionsRepository.findByLectureLectureId(pLectureId);
         //TODO: Ver como se puede implementar este mapper: http://modelmapper.org/getting-started/
         if (CollectionUtils.isNotEmpty(questionEntities)) {
             for (QuestionEntity entity : questionEntities) {

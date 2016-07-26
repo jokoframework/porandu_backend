@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface QuestionsRepository extends JpaRepository<QuestionEntity, Long> {
 
-    List<QuestionEntity> findByLectureId(Long pLectureId);
+    List<QuestionEntity> findByLectureLectureId(Long pId);
 }

@@ -1,29 +1,24 @@
 package io.github.jokoframework.porandu.web.dto.response;
 
-import io.github.jokoframework.porandu.dto.BaseResponseDTO;
-import io.github.jokoframework.porandu.entities.EventEntity;
-import io.github.jokoframework.porandu.entities.PersonEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import javax.persistence.*;
 
 /**
  * Created by afeltes on 25/07/16.
  */
 public class LectureResponseDTO {
 
-    private Long id;
+    private Long lectureId;
     private String code;
     private String description;
     private EventResponseDTO event;
     private PersonResponseDTO author;
 
-    public Long getId() {
-        return id;
+    public Long getLectureId() {
+        return lectureId;
     }
 
-    public void setId(Long pId) {
-        id = pId;
+    public void setLectureId(Long pLectureId) {
+        lectureId = pLectureId;
     }
 
     public String getCode() {
@@ -62,7 +57,7 @@ public class LectureResponseDTO {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("id", id)
+                .append("lectureId", lectureId)
                 .append("code", code)
                 .append("description", description)
                 .append("event", event)

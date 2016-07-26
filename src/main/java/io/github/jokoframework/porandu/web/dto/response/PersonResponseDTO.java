@@ -1,22 +1,21 @@
 package io.github.jokoframework.porandu.web.dto.response;
 
-import io.github.jokoframework.porandu.dto.BaseResponseDTO;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Created by afeltes on 25/07/16.
  */
 public class PersonResponseDTO {
-    private Long id;
+    private Long personId;
     private String fullName;
     private String email;
 
-    public Long getId() {
-        return id;
+    public Long getPersonId() {
+        return personId;
     }
 
-    public void setId(Long pId) {
-        id = pId;
+    public void setPersonId(Long pPersonId) {
+        personId = pPersonId;
     }
 
     public String getFullName() {
@@ -39,7 +38,7 @@ public class PersonResponseDTO {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("id", id)
+                .append("personId", personId)
                 .append("fullName", fullName)
                 .append("email", email)
                 .toString();

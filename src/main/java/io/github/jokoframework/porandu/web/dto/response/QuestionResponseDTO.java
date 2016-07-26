@@ -1,30 +1,26 @@
 package io.github.jokoframework.porandu.web.dto.response;
 
 import io.github.jokoframework.porandu.dto.BaseResponseDTO;
-import io.github.jokoframework.porandu.entities.LectureEntity;
 import io.github.jokoframework.porandu.web.dto.IResponseDTO;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.springframework.http.HttpStatus;
-
-import javax.persistence.*;
 
 public class QuestionResponseDTO extends BaseResponseDTO implements IResponseDTO {
 
     public static final String HTTP_STATUS_ACCEPTED = "ACCEPTED";
     public static final String HTTP_STATUS_UNAUTHORIZED = "UNAUTHORIZED";
 
-    private Long id;
+    private Long questionId;
     private String title;
     private String detail;
     private LectureResponseDTO lecture;
     private PersonResponseDTO author;
 
-    public Long getId() {
-        return id;
+    public Long getQuestionId() {
+        return questionId;
     }
 
-    public void setId(Long pId) {
-        id = pId;
+    public void setQuestionId(Long pQuestionId) {
+        questionId = pQuestionId;
     }
 
     public String getTitle() {
@@ -63,7 +59,7 @@ public class QuestionResponseDTO extends BaseResponseDTO implements IResponseDTO
     public String toString() {
         return new ToStringBuilder(this)
                 .appendSuper(super.toString())
-                .append("id", id)
+                .append("questionId", questionId)
                 .append("title", title)
                 .append("detail", detail)
                 .toString();
