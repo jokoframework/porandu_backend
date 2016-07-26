@@ -79,6 +79,14 @@ public class LectureEntity extends BaseEntity {
         imageUrl = pImageUrl;
     }
 
+    public PersonEntity getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(PersonEntity pAuthor) {
+        author = pAuthor;
+    }
+
     @Override
     public Long getId() {
         return lectureId;

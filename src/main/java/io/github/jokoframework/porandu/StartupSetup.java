@@ -3,6 +3,8 @@ package io.github.jokoframework.porandu;
 import javax.annotation.PostConstruct;
 
 import io.github.jokoframework.porandu.manager.ParametroManager;
+import org.flywaydb.core.api.callback.FlywayCallback;
+import org.flywaydb.core.internal.callback.SqlScriptFlywayCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class StartupSetup {
 
     @PostConstruct
     public void init() {
+        if(parametroManager.count() <=0L) {
+
+        }
         parametroManager.reload();
         logger.info("Porandu inicializado correctamente");
     }

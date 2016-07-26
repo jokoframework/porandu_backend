@@ -1,4 +1,4 @@
-package io.github.jokoframework.porandu.web;
+package io.github.jokoframework.porandu.web.controller;
 
 import io.github.jokoframework.porandu.rest.ApiPaths;
 import io.github.jokoframework.porandu.web.dto.response.HeartBeatResponseDTO;
@@ -15,11 +15,8 @@ import java.util.Date;
 
 public abstract class BaseRestController {
 
-    @RequestMapping(value = ApiPaths.ROOT_DIAGNOSTIC + "/" + ApiPaths.SUFFIX_HEART_BEAT, method = RequestMethod.GET)
-    public ResponseEntity<HeartBeatResponseDTO> getHearbeat() {
-        HeartBeatResponseDTO heartBeatResponseDTO = getHeartBeatStatus();
-        return new ResponseEntity<HeartBeatResponseDTO>(heartBeatResponseDTO, heartBeatResponseDTO.getHttpStatus());
-    }
+//    @RequestMapping(value = ApiPaths.ROOT_DIAGNOSTIC + "/" + ApiPaths.SUFFIX_HEART_BEAT, method = RequestMethod.GET)
+    public abstract ResponseEntity<HeartBeatResponseDTO> getHearbeat();
 
     public HeartBeatResponseDTO getHeartBeatStatus() {
         HttpStatus httpStatus = HttpStatus.OK;

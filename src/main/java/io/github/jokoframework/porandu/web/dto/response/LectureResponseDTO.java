@@ -10,6 +10,7 @@ public class LectureResponseDTO {
     private Long lectureId;
     private String code;
     private String description;
+    private String imageUrl;
     private EventResponseDTO event;
     private PersonResponseDTO author;
 
@@ -53,6 +54,14 @@ public class LectureResponseDTO {
         author = pAuthor;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String pImageUrl) {
+        imageUrl = pImageUrl;
+    }
+
 
     @Override
     public String toString() {
@@ -60,6 +69,7 @@ public class LectureResponseDTO {
                 .append("lectureId", lectureId)
                 .append("code", code)
                 .append("description", description)
+                .append("imageUrl", imageUrl)
                 .append("event", event)
                 .append("author", author)
                 .toString();

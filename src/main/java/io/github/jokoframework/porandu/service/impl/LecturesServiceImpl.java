@@ -1,12 +1,11 @@
 package io.github.jokoframework.porandu.service.impl;
 
+import io.github.jokoframework.porandu.entities.EventEntity;
 import io.github.jokoframework.porandu.entities.LectureEntity;
-import io.github.jokoframework.porandu.entities.QuestionEntity;
-import io.github.jokoframework.porandu.repositories.QuestionsRepository;
-import io.github.jokoframework.porandu.service.QuestionService;
+import io.github.jokoframework.porandu.repositories.LecturesRepository;
+import io.github.jokoframework.porandu.service.LecturesService;
 import io.github.jokoframework.porandu.web.dto.response.LectureResponseDTO;
 import io.github.jokoframework.porandu.web.dto.response.PersonResponseDTO;
-import io.github.jokoframework.porandu.web.dto.response.QuestionResponseDTO;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +18,20 @@ import java.util.List;
  * Created by afeltes on 25/07/16.
  */
 @Service
-public class QuestionServiceImpl implements QuestionService {
+public class LecturesServiceImpl implements LecturesService {
 
     @Autowired
-    private QuestionsRepository questionsRepository;
+    private LecturesRepository lecturesRepository;
 
     @Override
-    public List<QuestionResponseDTO> findByLecture(Long pLectureId) {
-        List<QuestionResponseDTO> questions = new ArrayList<>();
-        List<QuestionEntity> questionEntities = questionsRepository.findByLectureLectureId(pLectureId);
+    public List<LectureResponseDTO> findByEventId(Long pEventId) {
+        List<LectureResponseDTO> questions = new ArrayList<>();
+        List<LectureEntity> eventEntities = lecturesRepository.findByEvent(new EventEntity(pEventId));
         //TODO: Ver como se puede implementar este mapper: http://modelmapper.org/getting-started/
-        if (CollectionUtils.isNotEmpty(questionEntities)) {
-            for (QuestionEntity entity : questionEntities) {
-                QuestionResponseDTO dto = new QuestionResponseDTO();
+        if (CollectionUtils.isNotEmpty(eventEntities)) {
+            for (LectureEntity entity : eventEntities) {
+                LectureResponseDTO dto = new LectureResponseDTO();
                 BeanUtils.copyProperties(entity, dto);
-                LectureResponseDTO lectureResponseDTO = new LectureResponseDTO();
-                BeanUtils.copyProperties(entity.getLecture(), lectureResponseDTO);
-                dto.setLecture(lectureResponseDTO);
                 PersonResponseDTO personResponseDTO = new PersonResponseDTO();
                 BeanUtils.copyProperties(entity.getAuthor(), personResponseDTO);
                 dto.setAuthor(personResponseDTO);

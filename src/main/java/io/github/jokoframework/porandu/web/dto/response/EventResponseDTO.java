@@ -10,6 +10,7 @@ public class EventResponseDTO extends BaseResponseDTO {
     private Long eventId;
     private String code;
     private String description;
+    private String imageUrl;
 
     public Long getEventId() {
         return eventId;
@@ -35,13 +36,22 @@ public class EventResponseDTO extends BaseResponseDTO {
         description = pDescription;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String pImageUrl) {
+        imageUrl = pImageUrl;
+    }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .appendSuper(super.toString())
                 .append("eventId", eventId)
                 .append("code", code)
                 .append("description", description)
+                .append("imageUrl", imageUrl)
                 .toString();
     }
 }

@@ -84,4 +84,9 @@ public class ParametroManagerImpl implements ParametroManager {
         parametroRepo.delete(p);
         return this;
     }
+
+    @Override
+    public long count() {
+        return parametroRepo.count();
+    }
 }

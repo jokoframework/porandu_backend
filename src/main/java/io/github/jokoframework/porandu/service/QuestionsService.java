@@ -7,6 +7,6 @@ import java.util.List;
 /**
  * Created by afeltes on 25/07/16.
  */
-public interface QuestionService {
+public interface QuestionsService {
     List<QuestionResponseDTO> findByLecture(Long pLectureId);
 }

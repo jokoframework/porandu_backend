@@ -16,8 +16,10 @@ public class ApiPaths {
     public static final String QUESTIONS_HEARTBEAT = ROOT_QUESTIONS + SUFFIX_HEART_BEAT;
     public static final String PORANDU_HEARTBEAT = ROOT_PORANDU + SUFFIX_HEART_BEAT;
     public static final String ROOT_ANSWERS = "/api/answers";
+    public static final String ROOT_LECTURES = "/api/lectures";
 
     private ApiPaths() {
 
     }
 }
+

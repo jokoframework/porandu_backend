@@ -1,6 +1,10 @@
-insert into PORANDU.EVENTS(CODE, DESCRIPTION) VALUES ('VTECH-6', 'Viernes Tecnológico #6');
-insert into PORANDU.PERSONS(EMAIL, FULL_NAME) VALUES ('test@sodep.com.py','Expositor Sodep #1');
-insert into PORANDU.PERSONS(EMAIL, FULL_NAME) VALUES ('test@sodep.com.py','Asistente Invitado #1');
-insert into PORANDU.LECTURES(CODE, DESCRIPTION, EVENT_ID, AUTHOR_ID) VALUES ('JOKO-1', 'Joko Framework', 1, 1);
+insert into PORANDU.EVENTS(CODE, DESCRIPTION, IMAGE_URL) VALUES ('VTECH-6', 'Viernes Tecnológico #6', 'https://c1.staticflickr.com/7/6035/6243837427_cb427c2a8a_b.jpg');
+insert into PORANDU.EVENTS(CODE, DESCRIPTION, IMAGE_URL) VALUES ('VTECH-5', 'Viernes Tecnológico #5', 'https://pixabay.com/static/uploads/photo/2015/05/31/10/51/technology-791029_960_720.jpg');
+insert into PORANDU.PERSONS(EMAIL, FULL_NAME) VALUES ('expo1@sodep.com.py','Expositor Sodep #1');
+insert into PORANDU.PERSONS(EMAIL, FULL_NAME) VALUES ('expo2@sodep.com.py','Expositor Sodep #2');
+insert into PORANDU.PERSONS(EMAIL, FULL_NAME) VALUES ('expo3@sodep.com.py','Asistente Invitado #1');
+insert into PORANDU.LECTURES(CODE, DESCRIPTION, IMAGE_URL, EVENT_ID, AUTHOR_ID) VALUES ('JMC-1', 'Comunidades colaborativas', 'https://c1.staticflickr.com/7/6091/6365692623_8380d6fc4a_z.jpg',1, 1);
+insert into PORANDU.LECTURES(CODE, DESCRIPTION, IMAGE_URL, EVENT_ID, AUTHOR_ID) VALUES ('JOKO-1', 'Joko Framework', 'https://pixabay.com/static/uploads/photo/2016/06/09/18/04/frog-1446246_960_720.jpg',1, 1);
 insert into PORANDU.QUESTIONS(AUTHOR_ID, LECTURE_ID, DETAIL, TITLE) VALUES (2,1,null,'¿por qué eligieron Spring Boot?');
 insert into PORANDU.QUESTIONS(AUTHOR_ID, LECTURE_ID, DETAIL, TITLE) VALUES (2,1,null,'¿Por qué no usaron algún framework de front end como AngularJS?');
+insert into PORANDU.QUESTIONS(AUTHOR_ID, LECTURE_ID, DETAIL, TITLE) VALUES (2,1,null,'¿Qué licencia tiene Joko?');

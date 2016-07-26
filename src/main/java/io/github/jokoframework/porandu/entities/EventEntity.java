@@ -31,6 +31,13 @@ public class EventEntity extends BaseEntity {
     @Column(length = 2048)
     private String imageUrl;
 
+    public EventEntity() {
+    }
+
+    public EventEntity(Long pEventId) {
+        setEventId(pEventId);
+    }
+
     public Long getEventId() {
         return eventId;
     }
