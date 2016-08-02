@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 /**
  * Created by afeltes on 25/07/16.
  */
-public class EventResponseDTO extends BaseResponseDTO {
+public class EventResponseDTO {
     private Long eventId;
     private String code;
     private String description;

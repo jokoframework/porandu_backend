@@ -9,4 +9,9 @@ import java.util.List;
  */
 public interface QuestionsService {
     List<QuestionResponseDTO> findByLecture(Long pLectureId);
+
+    QuestionResponseDTO findById(Long questionId);
+    QuestionResponseDTO vote(QuestionResponseDTO question, String userName);
+    QuestionResponseDTO downvote(QuestionResponseDTO question, String userName);
+    List<QuestionResponseDTO> getVotes(List<QuestionResponseDTO> questions, String userName);
 }

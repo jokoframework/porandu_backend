@@ -4,6 +4,7 @@ import io.github.jokoframework.porandu.entities.EventEntity;
 import io.github.jokoframework.porandu.entities.LectureEntity;
 import io.github.jokoframework.porandu.repositories.LecturesRepository;
 import io.github.jokoframework.porandu.service.LecturesService;
+import io.github.jokoframework.porandu.web.dto.response.EventResponseDTO;
 import io.github.jokoframework.porandu.web.dto.response.LectureResponseDTO;
 import io.github.jokoframework.porandu.web.dto.response.PersonResponseDTO;
 import org.apache.commons.collections4.CollectionUtils;
@@ -32,6 +33,9 @@ public class LecturesServiceImpl implements LecturesService {
             for (LectureEntity entity : eventEntities) {
                 LectureResponseDTO dto = new LectureResponseDTO();
                 BeanUtils.copyProperties(entity, dto);
+                EventResponseDTO event = new EventResponseDTO();
+                BeanUtils.copyProperties(entity.getEvent(), event);
+                dto.setEvent(event);
                 PersonResponseDTO personResponseDTO = new PersonResponseDTO();
                 BeanUtils.copyProperties(entity.getAuthor(), personResponseDTO);
                 dto.setAuthor(personResponseDTO);

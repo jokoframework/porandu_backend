@@ -1,19 +1,16 @@
 package io.github.jokoframework.porandu.web.dto.response;
 
-import io.github.jokoframework.porandu.dto.BaseResponseDTO;
-import io.github.jokoframework.porandu.web.dto.IResponseDTO;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class QuestionResponseDTO extends BaseResponseDTO implements IResponseDTO {
-
-    public static final String HTTP_STATUS_ACCEPTED = "ACCEPTED";
-    public static final String HTTP_STATUS_UNAUTHORIZED = "UNAUTHORIZED";
+public class QuestionResponseDTO {
 
     private Long questionId;
     private String title;
     private String detail;
     private LectureResponseDTO lecture;
     private PersonResponseDTO author;
+    private Long votes;
+    private boolean voted;
 
     public Long getQuestionId() {
         return questionId;
@@ -55,6 +52,22 @@ public class QuestionResponseDTO extends BaseResponseDTO implements IResponseDTO
         author = pAuthor;
     }
 
+    public Long getVotes() {
+        return votes;
+    }
+
+    public void setVotes(Long votes) {
+        this.votes = votes;
+    }
+
+    public boolean isVoted() {
+        return voted;
+    }
+
+    public void setVoted(boolean voted) {
+        this.voted = voted;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
@@ -62,6 +75,8 @@ public class QuestionResponseDTO extends BaseResponseDTO implements IResponseDTO
                 .append("questionId", questionId)
                 .append("title", title)
                 .append("detail", detail)
+                .append("votes", votes)
+                .append("voted", voted)
                 .toString();
     }
 }
