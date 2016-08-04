@@ -26,7 +26,11 @@ public class PersonEntity extends BaseEntity {
 
     @Basic
     private String email;
-
+    
+    @Basic
+    @Column(name = "link_social")
+    private String linkSocial;
+    
     public Long getPersonId() {
         return personId;
     }
@@ -50,8 +54,17 @@ public class PersonEntity extends BaseEntity {
     public void setEmail(String pEmail) {
         email = pEmail;
     }
+    
 
-    @Override
+    public String getLinkSocial() {
+		return linkSocial;
+	}
+
+	public void setLinkSocial(String linkSocial) {
+		this.linkSocial = linkSocial;
+	}
+
+	@Override
     public Long getId() {
         return personId;
     }

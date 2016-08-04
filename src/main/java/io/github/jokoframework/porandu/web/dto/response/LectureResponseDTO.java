@@ -13,6 +13,8 @@ public class LectureResponseDTO {
     private String imageUrl;
     private EventResponseDTO event;
     private PersonResponseDTO author;
+    private Integer totalQuestion;
+    private Integer totalVotes;
 
     public Long getLectureId() {
         return lectureId;
@@ -62,8 +64,23 @@ public class LectureResponseDTO {
         imageUrl = pImageUrl;
     }
 
+    public Integer getTotalQuestion() {
+		return totalQuestion;
+	}
 
-    @Override
+	public void setTotalQuestion(Integer totalQuestion) {
+		this.totalQuestion = totalQuestion;
+	}
+
+	public Integer getTotalVotes() {
+		return totalVotes;
+	}
+
+	public void setTotalVotes(Integer totalVotes) {
+		this.totalVotes = totalVotes;
+	}
+
+	@Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("lectureId", lectureId)

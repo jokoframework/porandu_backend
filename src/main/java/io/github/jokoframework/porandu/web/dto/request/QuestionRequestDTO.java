@@ -9,6 +9,8 @@ public class QuestionRequestDTO {
     private String id;
     private String title;
     private String description;
+    private String email;
+    private String fullName;
 
     public String getId() {
         return id;
@@ -33,9 +35,26 @@ public class QuestionRequestDTO {
     public void setDescription(String pDescription) {
         description = pDescription;
     }
+    
+
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
 
-    @Override
+	@Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("id", id)

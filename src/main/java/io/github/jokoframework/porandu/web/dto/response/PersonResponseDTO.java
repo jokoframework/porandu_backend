@@ -9,6 +9,7 @@ public class PersonResponseDTO {
     private Long personId;
     private String fullName;
     private String email;
+    private String linkSocial;
 
     public Long getPersonId() {
         return personId;
@@ -33,9 +34,16 @@ public class PersonResponseDTO {
     public void setEmail(String pEmail) {
         email = pEmail;
     }
+    
+    public String getLinkSocial() {
+		return linkSocial;
+	}
 
+	public void setLinkSocial(String linkSocial) {
+		this.linkSocial = linkSocial;
+	}
 
-    @Override
+	@Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("personId", personId)
