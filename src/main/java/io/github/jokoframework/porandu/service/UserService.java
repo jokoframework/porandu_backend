@@ -7,4 +7,6 @@ import io.github.jokoframework.porandu.entities.UserEntity;
  */
 public interface UserService {
     UserEntity getOrInsertUser(String userName);
+
+    void save(UserEntity pUser);
 }

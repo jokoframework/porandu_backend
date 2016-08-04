@@ -1,5 +1,6 @@
 package io.github.jokoframework.porandu.service;
 
+import io.github.jokoframework.porandu.web.dto.request.QuestionRequestDTO;
 import io.github.jokoframework.porandu.web.dto.response.QuestionResponseDTO;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface QuestionsService {
     QuestionResponseDTO vote(QuestionResponseDTO question, String userName);
     QuestionResponseDTO downvote(QuestionResponseDTO question, String userName);
     List<QuestionResponseDTO> getVotes(List<QuestionResponseDTO> questions, String userName);
+
+    QuestionResponseDTO save(QuestionRequestDTO pQuestionRequestDTO, String pUserName);
 }

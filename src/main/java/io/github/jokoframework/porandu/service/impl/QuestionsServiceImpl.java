@@ -1,16 +1,19 @@
 package io.github.jokoframework.porandu.service.impl;
 
-import io.github.jokoframework.porandu.entities.QuestionEntity;
-import io.github.jokoframework.porandu.entities.UserEntity;
-import io.github.jokoframework.porandu.entities.VoteEntity;
+import io.github.jokoframework.porandu.entities.*;
+import io.github.jokoframework.porandu.exceptions.PoranduValueRequiredException;
+import io.github.jokoframework.porandu.repositories.LecturesRepository;
+import io.github.jokoframework.porandu.repositories.PersonRepository;
 import io.github.jokoframework.porandu.repositories.QuestionsRepository;
 import io.github.jokoframework.porandu.repositories.VotesRepository;
 import io.github.jokoframework.porandu.service.QuestionsService;
 import io.github.jokoframework.porandu.service.UserService;
+import io.github.jokoframework.porandu.web.dto.request.QuestionRequestDTO;
 import io.github.jokoframework.porandu.web.dto.response.LectureResponseDTO;
 import io.github.jokoframework.porandu.web.dto.response.PersonResponseDTO;
 import io.github.jokoframework.porandu.web.dto.response.QuestionResponseDTO;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Created by afeltes on 25/07/16.
@@ -33,6 +37,12 @@ public class QuestionsServiceImpl implements QuestionsService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PersonRepository personRepository;
+
+    @Autowired
+    private LecturesRepository lectureRepository;
 
     @Override
     public List<QuestionResponseDTO> findByLecture(Long pLectureId) {
@@ -104,12 +114,54 @@ public class QuestionsServiceImpl implements QuestionsService {
             questionList.add(vote.getQuestion().getId());
         }
 
-        for (QuestionResponseDTO dto: questions) {
+        for (QuestionResponseDTO dto : questions) {
             if (questionList.contains(dto.getQuestionId())) {
                 dto.setVoted(true);
             }
             dto.setVotes(voteRepository.countByQuestionQuestionId(dto.getQuestionId()));
         }
         return questions;
+    }
+
+    @Override
+    public QuestionResponseDTO save(QuestionRequestDTO pQuestionRequestDTO, String pUserName) {
+        UserEntity user = userService.getOrInsertUser(pUserName);
+        if (StringUtils.isBlank(pQuestionRequestDTO.getEmail()) &&
+                StringUtils.isBlank(pQuestionRequestDTO.getTitle())) {
+            throw new PoranduValueRequiredException("Email y título/pregunta son requeridos");
+        }
+        PersonEntity authorEntity = new PersonEntity();
+        authorEntity.setEmail(pQuestionRequestDTO.getEmail());
+        authorEntity.setFullName(pQuestionRequestDTO.getFullName());
+        personRepository.save(authorEntity);
+        user.setPerson(authorEntity);
+        //Guardamos un person ID asociado al user (http session id)
+        userService.save(user);
+        LectureEntity lectureEntity = lectureRepository.findOne(pQuestionRequestDTO.getLectureId());
+        if (lectureEntity == null) {
+            throw new NoSuchElementException(String.format("Charla no encontrada: %s ", pQuestionRequestDTO.getLectureId()));
+        }
+        QuestionResponseDTO responseDTO = insertNewQuestion(pQuestionRequestDTO, authorEntity, lectureEntity);
+        return responseDTO;
+    }
+
+    private QuestionResponseDTO insertNewQuestion(QuestionRequestDTO pQuestionRequestDTO, PersonEntity pAuthorEntity, LectureEntity pLectureEntity) {
+        QuestionEntity questionEntity = new QuestionEntity();
+        questionEntity.setAuthor(pAuthorEntity);
+        questionEntity.setTitle(pQuestionRequestDTO.getTitle());
+        questionEntity.setLecture(pLectureEntity);
+        //FIXME Unificar los campos
+        questionEntity.setDetail(pQuestionRequestDTO.getDescription());
+        questionsRepository.save(questionEntity);
+        QuestionResponseDTO responseDTO = new QuestionResponseDTO();
+        BeanUtils.copyProperties(questionEntity, responseDTO);
+        LectureResponseDTO lectureResponse = new LectureResponseDTO();
+        BeanUtils.copyProperties(pLectureEntity, lectureResponse);
+        responseDTO.setLecture(lectureResponse);
+        PersonResponseDTO author = new PersonResponseDTO();
+        BeanUtils.copyProperties(pAuthorEntity, author);
+        responseDTO.setAuthor(author);
+        responseDTO.setAuthor(author);
+        return responseDTO;
     }
 }

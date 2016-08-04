@@ -11,6 +11,7 @@ public class QuestionRequestDTO {
     private String description;
     private String email;
     private String fullName;
+    private Long lectureId;
 
     public String getId() {
         return id;
@@ -54,12 +55,24 @@ public class QuestionRequestDTO {
 	}
 
 
-	@Override
+    public Long getLectureId() {
+        return lectureId;
+    }
+
+    public void setLectureId(Long pLectureId) {
+        lectureId = pLectureId;
+    }
+
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("id", id)
                 .append("title", title)
                 .append("description", description)
+                .append("email", email)
+                .append("fullName", fullName)
+                .append("lectureId", lectureId)
                 .toString();
     }
 }
