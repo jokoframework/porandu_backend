@@ -2,6 +2,8 @@ package io.github.jokoframework.porandu.web.dto.response;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Date;
+
 /**
  * Created by afeltes on 25/07/16.
  */
@@ -15,6 +17,8 @@ public class LectureResponseDTO {
     private PersonResponseDTO author;
     private Integer totalQuestion;
     private Integer totalVotes;
+    private Date insertedAt;
+
 
     public Long getLectureId() {
         return lectureId;
@@ -80,7 +84,16 @@ public class LectureResponseDTO {
 		this.totalVotes = totalVotes;
 	}
 
-	@Override
+    public Date getInsertedAt() {
+        return insertedAt;
+    }
+
+    public void setInsertedAt(Date pInsertedAt) {
+        insertedAt = pInsertedAt;
+    }
+
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("lectureId", lectureId)
@@ -89,6 +102,9 @@ public class LectureResponseDTO {
                 .append("imageUrl", imageUrl)
                 .append("event", event)
                 .append("author", author)
+                .append("totalQuestion", totalQuestion)
+                .append("totalVotes", totalVotes)
+                .append("insertedAt", insertedAt)
                 .toString();
     }
 }

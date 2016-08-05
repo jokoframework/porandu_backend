@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by afeltes on 25/07/16.
@@ -30,6 +31,10 @@ public class EventEntity extends BaseEntity {
     @Basic
     @Column(length = 2048)
     private String imageUrl;
+
+    @Column(name = "inserted_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date insertedAt;
 
     public EventEntity() {
     }
@@ -75,6 +80,14 @@ public class EventEntity extends BaseEntity {
         return eventId;
     }
 
+    public Date getInsertedAt() {
+        return insertedAt;
+    }
+
+    public void setInsertedAt(Date pInsertedAt) {
+        insertedAt = pInsertedAt;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -93,6 +106,7 @@ public class EventEntity extends BaseEntity {
                 .append(this.code, rhs.code)
                 .append(this.description, rhs.description)
                 .append(this.imageUrl, rhs.imageUrl)
+                .append(this.insertedAt, rhs.insertedAt)
                 .isEquals();
     }
 
@@ -104,6 +118,7 @@ public class EventEntity extends BaseEntity {
                 .append(code)
                 .append(description)
                 .append(imageUrl)
+                .append(insertedAt)
                 .toHashCode();
     }
 
@@ -116,6 +131,14 @@ public class EventEntity extends BaseEntity {
                 .append("code", code)
                 .append("description", description)
                 .append("imageUrl", imageUrl)
+                .append("insertedAt", insertedAt)
                 .toString();
+    }
+
+    @PrePersist
+    public void setDefaults() {
+        if(getInsertedAt() == null) {
+            setInsertedAt(new Date());
+        }
     }
 }

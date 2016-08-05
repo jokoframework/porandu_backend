@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by afeltes on 25/07/16.
@@ -38,6 +39,11 @@ public class LectureEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private PersonEntity author;
+
+    @Column(name = "inserted_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date insertedAt;
+
 
     public Long getLectureId() {
         return lectureId;
@@ -92,6 +98,15 @@ public class LectureEntity extends BaseEntity {
         return lectureId;
     }
 
+    public Date getInsertedAt() {
+        return insertedAt;
+    }
+
+    public void setInsertedAt(Date pInsertedAt) {
+        insertedAt = pInsertedAt;
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -112,6 +127,7 @@ public class LectureEntity extends BaseEntity {
                 .append(this.imageUrl, rhs.imageUrl)
                 .append(this.event, rhs.event)
                 .append(this.author, rhs.author)
+                .append(this.insertedAt, rhs.insertedAt)
                 .isEquals();
     }
 
@@ -125,6 +141,7 @@ public class LectureEntity extends BaseEntity {
                 .append(imageUrl)
                 .append(event)
                 .append(author)
+                .append(insertedAt)
                 .toHashCode();
     }
 
@@ -139,6 +156,14 @@ public class LectureEntity extends BaseEntity {
                 .append("imageUrl", imageUrl)
                 .append("event", event)
                 .append("author", author)
+                .append("insertedAt", insertedAt)
                 .toString();
+    }
+
+    @PrePersist
+    public void setDefaults() {
+        if(getInsertedAt() == null) {
+            setInsertedAt(new Date());
+        }
     }
 }

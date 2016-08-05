@@ -2,6 +2,8 @@ package io.github.jokoframework.porandu.web.dto.response;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Date;
+
 public class QuestionResponseDTO {
 
     private Long questionId;
@@ -11,6 +13,7 @@ public class QuestionResponseDTO {
     private PersonResponseDTO author;
     private Long votes;
     private boolean voted;
+    private Date insertedAt;
 
     public Long getQuestionId() {
         return questionId;
@@ -68,15 +71,25 @@ public class QuestionResponseDTO {
         this.voted = voted;
     }
 
+    public Date getInsertedAt() {
+        return insertedAt;
+    }
+
+    public void setInsertedAt(Date pInsertedAt) {
+        insertedAt = pInsertedAt;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .appendSuper(super.toString())
                 .append("questionId", questionId)
                 .append("title", title)
                 .append("detail", detail)
+                .append("lecture", lecture)
+                .append("author", author)
                 .append("votes", votes)
                 .append("voted", voted)
+                .append("insertedAt", insertedAt)
                 .toString();
     }
 }

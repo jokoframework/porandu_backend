@@ -9,4 +9,5 @@ import java.util.List;
 public interface QuestionsRepository extends JpaRepository<QuestionEntity, Long> {
 
     List<QuestionEntity> findByLectureLectureId(Long pId);
+    List<QuestionEntity> findByLectureLectureIdOrderByInsertedAt(Long pId);
 }

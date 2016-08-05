@@ -3,6 +3,8 @@ package io.github.jokoframework.porandu.web.dto.response;
 import io.github.jokoframework.porandu.dto.BaseResponseDTO;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Date;
+
 /**
  * Created by afeltes on 25/07/16.
  */
@@ -11,6 +13,7 @@ public class EventResponseDTO {
     private String code;
     private String description;
     private String imageUrl;
+    private Date insertedAt;
 
     public Long getEventId() {
         return eventId;
@@ -44,14 +47,22 @@ public class EventResponseDTO {
         imageUrl = pImageUrl;
     }
 
+    public Date getInsertedAt() {
+        return insertedAt;
+    }
+
+    public void setInsertedAt(Date pInsertedAt) {
+        insertedAt = pInsertedAt;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .appendSuper(super.toString())
                 .append("eventId", eventId)
                 .append("code", code)
                 .append("description", description)
                 .append("imageUrl", imageUrl)
+                .append("insertedAt", insertedAt)
                 .toString();
     }
 }

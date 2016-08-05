@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by afeltes on 25/07/16.
@@ -34,6 +35,10 @@ public class QuestionEntity extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private PersonEntity author;
+
+    @Column(name = "inserted_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date insertedAt;
 
     public Long getQuestionId() {
         return questionId;
@@ -80,17 +85,14 @@ public class QuestionEntity extends BaseEntity {
         return questionId;
     }
 
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .appendSuper(super.toString())
-                .append("questionId", questionId)
-                .append("title", title)
-                .append("detail", detail)
-                .append("lecture", lecture)
-                .append("author", author)
-                .toString();
+    public Date getInsertedAt() {
+        return insertedAt;
     }
+
+    public void setInsertedAt(Date pInsertedAt) {
+        insertedAt = pInsertedAt;
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -111,6 +113,7 @@ public class QuestionEntity extends BaseEntity {
                 .append(this.detail, rhs.detail)
                 .append(this.lecture, rhs.lecture)
                 .append(this.author, rhs.author)
+                .append(this.insertedAt, rhs.insertedAt)
                 .isEquals();
     }
 
@@ -123,6 +126,28 @@ public class QuestionEntity extends BaseEntity {
                 .append(detail)
                 .append(lecture)
                 .append(author)
+                .append(insertedAt)
                 .toHashCode();
+    }
+
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .appendSuper(super.toString())
+                .append("questionId", questionId)
+                .append("title", title)
+                .append("detail", detail)
+                .append("lecture", lecture)
+                .append("author", author)
+                .append("insertedAt", insertedAt)
+                .toString();
+    }
+
+    @PrePersist
+    public void setDefaults() {
+        if(getInsertedAt() == null) {
+            setInsertedAt(new Date());
+        }
     }
 }
