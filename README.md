@@ -34,7 +34,7 @@ Antes de empezar, recomendamos guardar los archivos y carpetas de proyectos que 
 
 Debe clonar el proyecto de:
 
-** https://github.com/jokoframework/samples.git **
+** https://github.com/jokoframework/porandu_backend.git **
 
 ## Iniciar la aplicación
 
