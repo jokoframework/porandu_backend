@@ -13,7 +13,7 @@ public class ApiPaths {
      */
     public static final String SUFFIX_HEART_BEAT = "/heartbeat";
     public static final String PORANDU_HEARTBEAT = ROOT_PORANDU + SUFFIX_HEART_BEAT;
-    public static final String ROOT_EVENTS = "/api/evens";
+    public static final String ROOT_EVENTS = "/api/events";
     public static final String EVENTS_HEARTBEAT = ROOT_EVENTS + SUFFIX_HEART_BEAT;
     public static final String ROOT_LECTURES = "/api/lectures";
     public static final String LECTURES_HEARTBEAT = ROOT_LECTURES + SUFFIX_HEART_BEAT;
