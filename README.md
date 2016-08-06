@@ -50,7 +50,7 @@ Para poder levantar la apliación desde un IDE, se debe añadir el parámetro co
 
 Nota: cuando se levanta por primera vez la app, la base de datos embedded es instalada automáticamente en el directorio configurado en el archivo  applicacion.properties con el parámetro spring.datasource.url . Recordar que es necesario permisos de escritura sobre este directorio
  
-##Obtener REFRESH Token
-URI al swagger: http://localhost:9081/porandu/swagger/index.html
+##El proyecto cuenta con documentación del API accesible desde el swagger-ui
+URI al swagger: http://localhost:9082/porandu/swagger/index.html
 
 
